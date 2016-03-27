@@ -110,6 +110,8 @@ def dispatch_value(collectd_type, plugin_instance, values):
     val.type = collectd_type
     val.plugin_instance = plugin_instance
     val.values = cleaned_values
+    # workaround write_http plugin bug for collectd < 5.5 --jjo, 2016/03/27
+    val.meta = {'0': True}
     val.dispatch()
 
 
